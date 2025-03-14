@@ -24,6 +24,13 @@ if (!text || !button || !listTodo) {
     displayTodo(text.value, listTodo)
     text.value = ''
   })
+  listTodo.addEventListener('click', (e) => {
+    // @ts-ignore
+    if (e.target?.classList.contains('delete-todo')) {
+      const deleteButton = e.target as HTMLButtonElement // because we know
+      deleteButton.parentElement?.remove()
+    }
+  })
 }
 
 function displayTodo(text: string, list: HTMLUListElement) {

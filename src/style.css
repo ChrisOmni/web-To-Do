@@ -2,8 +2,78 @@ html,
 body {
   padding: 0;
   margin: 0;
+  background: #f3f4ff;
 }
 
 * {
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: serif;
+  color: #220235;
+}
+
+h2 {
+  font-size: 1.5em;
+  font-weight: 700;
+  margin: 0 0 0 0;
+}
+
+h1 {
+  font-size: 4em;
+  margin: 1em 0;
+  text-align: center;
+}
+
+.todo-input {
+  height: 100%;
+  width: 85%;
+  border: 2px solid #220235;
+  border-radius: 10px;
+  font-size: 120%;
+}
+
+.add-todo-button {
+  font-size: 1em;
+  font-weight: 700;
+  height: 100%;
+  width: 10%;
+  background: #220235;
+  color: #fff;
+  border: 0;
+  border-radius: 5px;
+}
+
+.inputs {
+  width: 70%;
+  height: 50%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.content {
+  padding: 5% 10%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.todo {
+  height: 7em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2em;
+}
+
+.list-of-todos {
+  padding: 2% 16%;
+}
+
+.todo-element {
+  width: 100%;
+  height: 4em;
+  margin-bottom: 1em;
+  font-size: 1.2em;
+  font-family: sans-serif;
 }

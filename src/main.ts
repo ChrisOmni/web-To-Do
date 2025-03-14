@@ -12,7 +12,7 @@ if (!text || !button || !listTodo) {
       if (text.value === '') {
         return
       }
-      displayTodo(text, listTodo)
+      displayTodo(text.value, listTodo)
       text.value = ''
     }
   })
@@ -21,11 +21,14 @@ if (!text || !button || !listTodo) {
     if (text.value === '') {
       return
     }
-    displayTodo(text, listTodo)
+    displayTodo(text.value, listTodo)
     text.value = ''
   })
 }
 
-function displayTodo(textInput: HTMLInputElement, list: HTMLUListElement) {
-  list.innerHTML += `<li class="todo-element">${textInput.value}</li>`
+function displayTodo(text: string, list: HTMLUListElement) {
+  const listElement = document.createElement('li')
+  listElement.classList.add('todo-element')
+  listElement.textContent = text
+  list.appendChild(listElement)
 }

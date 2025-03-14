@@ -41,6 +41,10 @@ h1 {
   border-radius: 5px;
 }
 
+.add-todo-button:hover {
+  background: #4c0772;
+}
+
 .inputs {
   width: 70%;
   height: 50%;
@@ -103,4 +107,8 @@ h3 {
   border-radius: 5px;
   width: 1.5em;
   height: 1.5em;
+}
+
+.delete-todo:hover {
+  background: #ff6868;
 }

@@ -1,23 +1,31 @@
 import './style.css'
 
-const text = document.getElementById('todo-input') as HTMLInputElement
-const button = document.getElementById('add-todo-button') as HTMLInputElement
-const listTodo = document.getElementById('list-of-todos') as HTMLElement
+const text = document.querySelector<HTMLInputElement>('#todo-input')
+const button = document.querySelector<HTMLButtonElement>('add-todo-button')
+const listTodo = document.querySelector<HTMLUListElement>('list-of-todos')
 
-text.addEventListener('keypress', (e) => {
-  if (e.key === 'Enter') {
+if (!text || !button || !listTodo) {
+  console.error('Missing elements')
+} else {
+  text.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      if (text.value === '') {
+        return
+      }
+      displayTodo(text, listTodo)
+      text.value = ''
+    }
+  })
+
+  button.addEventListener('click', () => {
     if (text.value === '') {
       return
     }
-    listTodo.innerHTML += `<li class="todo-element">${text.value}</li>`
+    displayTodo(text, listTodo)
     text.value = ''
-  }
-})
+  })
+}
 
-button.addEventListener('click', () => {
-  if (text.value === '') {
-    return
-  }
-  listTodo.innerHTML += `<li class="todo-element">${text.value}</li>`
-  text.value = ''
-})
+function displayTodo(textInput: HTMLInputElement, list: HTMLUListElement) {
+  list.innerHTML += `<li class="todo-element">${textInput.value}</li>`
+}

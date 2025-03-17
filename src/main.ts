@@ -7,12 +7,14 @@ const listTodo = document.querySelector<HTMLUListElement>('#list-of-todos')
 if (!text || !button || !listTodo) {
   console.error('Missing elements')
 } else {
+  const store: string[] = []
   text.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
       if (text.value === '') {
         return
       }
-      displayTodo(text.value, listTodo)
+      store.push(text.value)
+      displayTodo(text.value, listTodo, store)
       text.value = ''
     }
   })
@@ -21,9 +23,11 @@ if (!text || !button || !listTodo) {
     if (text.value === '') {
       return
     }
-    displayTodo(text.value, listTodo)
+    store.push(text.value)
+    displayTodo(text.value, listTodo, store)
     text.value = ''
   })
+
   listTodo.addEventListener('click', (e) => {
     // @ts-ignore
     if (e.target?.classList.contains('delete-todo')) {
@@ -31,9 +35,27 @@ if (!text || !button || !listTodo) {
       deleteButton.parentElement?.remove()
     }
   })
+
+  window.onload = () => {
+    const dataFromStorage = localStorage.getItem('todo-element')
+    if (dataFromStorage === null) {
+      console.error('no local storage')
+    } else {
+      const stored: string[] = store.concat(JSON.parse(dataFromStorage))
+      if (!listTodo) {
+        console.error('Missing elements')
+      } else {
+        for (let i = 0; i < stored.length; i++) {
+          store.push(stored[i])
+          displayTodo(stored[i], listTodo, store)
+        }
+      }
+      localStorage.setItem('todo-element', JSON.stringify(stored))
+    }
+  }
 }
 
-function displayTodo(text: string, list: HTMLUListElement) {
+function displayTodo(text: string, list: HTMLUListElement, array: string[]) {
   const listElement = document.createElement('li')
   listElement.classList.add('todo-element')
   list.appendChild(listElement)
@@ -49,4 +71,5 @@ function displayTodo(text: string, list: HTMLUListElement) {
   titleText.textContent = text
   listElement.appendChild(titleText)
   listElement.appendChild(deleteButton)
+  localStorage.setItem('todo-element', JSON.stringify(array))
 }

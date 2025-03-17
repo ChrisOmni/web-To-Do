@@ -32,6 +32,16 @@ if (!text || !button || !listTodo) {
     // @ts-ignore
     if (e.target?.classList.contains('delete-todo')) {
       const deleteButton = e.target as HTMLButtonElement // because we know
+      const deleteStore = deleteButton.parentElement
+      if (!deleteStore?.parentNode?.childNodes) {
+        console.error('critical error')
+      } else {
+        store.splice(
+          Array.from(deleteStore?.parentNode?.childNodes).indexOf(deleteStore),
+          1,
+        )
+        localStorage.setItem('todo-element', JSON.stringify(store))
+      }
       deleteButton.parentElement?.remove()
     }
   })

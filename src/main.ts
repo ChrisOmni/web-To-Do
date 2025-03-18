@@ -16,7 +16,11 @@ if (!text || !button || !listTodo || !dateAdd) {
   const dates: string[] = []
   text.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
-      if (text.value === '' || text.value.length >= 200) {
+      if (
+        text.value === '' ||
+        text.value.length >= 200 ||
+        dateAdd.value === ''
+      ) {
         if (!errorP) {
           console.error('Someone got the error p out')
         } else {
@@ -39,7 +43,7 @@ if (!text || !button || !listTodo || !dateAdd) {
   })
 
   button.addEventListener('click', () => {
-    if (text.value === '' || text.value.length >= 200) {
+    if (text.value === '' || text.value.length >= 200 || dateAdd.value === '') {
       if (!errorP) {
         console.error('Someone got the error p out')
       } else {

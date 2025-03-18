@@ -7,6 +7,7 @@ const errorP = document.querySelector<HTMLParagraphElement>(
   '#todo-creation-error',
 )
 const dateAdd = document.querySelector<HTMLInputElement>('.due-date')
+const resetButton = document.querySelector<HTMLButtonElement>('.reset-button')
 
 if (!text || !button || !listTodo || !dateAdd) {
   console.error('Missing elements')
@@ -62,6 +63,11 @@ if (!text || !button || !listTodo || !dateAdd) {
     displayTodo(text.value, listTodo, store, checkedbox, dateAdd.value, dates)
     text.value = ''
     dateAdd.value = ''
+  })
+
+  resetButton?.addEventListener('click', () => {
+    localStorage.clear()
+    location.reload()
   })
 
   listTodo.addEventListener('click', (e) => {

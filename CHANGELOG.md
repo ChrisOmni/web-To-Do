@@ -1,5 +1,40 @@
 # Changelog
 
+## [1.2.0](https://github.com/ChrisOmni/web-To-Do/compare/v1.1.0...v1.2.0) (2025-03-18)
+
+
+### Features
+
+* added a checkbox that let's you mark the task as done or not. ([5870448](https://github.com/ChrisOmni/web-To-Do/commit/587044841732bd5afdbd991eeb4b257012f3bcf1))
+* added an error message when the input is considered invalid ([67e7e9d](https://github.com/ChrisOmni/web-To-Do/commit/67e7e9d69523c5f05d7ac3fa80f92a98c5e967b4))
+* added an error message when the input is considered invalid ([0b3e19e](https://github.com/ChrisOmni/web-To-Do/commit/0b3e19e6c3756a769e7394fac61a66d29f226360))
+* added style on todo-element and a button that will serve a delete purpose ([418d58c](https://github.com/ChrisOmni/web-To-Do/commit/418d58c3ea632b1d0e056a384d48061ad33ee04f))
+* added the deletion button to the todos and styled the todo-elements. ([1329664](https://github.com/ChrisOmni/web-To-Do/commit/1329664a58aef0f0a5f7f5bf3d8d8ec3a75732d3))
+* added the html needed to create todos ([d3af4b8](https://github.com/ChrisOmni/web-To-Do/commit/d3af4b854e60fb112adb0e19fe78b3a944e77909))
+* added the logic for the checkbox to store in localStorage ([4e03ab8](https://github.com/ChrisOmni/web-To-Do/commit/4e03ab87bbebaaf2c2391f7a9da7c7f4c763bc38))
+* added the typescript needed to make the todo create element. ([77a1886](https://github.com/ChrisOmni/web-To-Do/commit/77a18864a02964ff2729af669743869cd92a2200))
+* linked the style.css file, added css, and added a div named content. ([52b1edc](https://github.com/ChrisOmni/web-To-Do/commit/52b1edc750eed95f86d630b6aa551fb6e9882106))
+* made the todos store in the localStorage and display on window load. ([2f7a891](https://github.com/ChrisOmni/web-To-Do/commit/2f7a89161e5d5fe0a1583c071e62ab669b040c13))
+* we can now delete Todos from the local storage ([fd3b877](https://github.com/ChrisOmni/web-To-Do/commit/fd3b8778ad2d44daf7699cc4a5fe8a98279f0421))
+
+
+### Bug Fixes
+
+* changed the getElement with querySelector and added a new function displayTodo ([6f7a297](https://github.com/ChrisOmni/web-To-Do/commit/6f7a29744b096011697111a65fc4bd2c48210bae))
+* fixed some minor issues in the style.css file. ([5870448](https://github.com/ChrisOmni/web-To-Do/commit/587044841732bd5afdbd991eeb4b257012f3bcf1))
+* fthe error message should now close on correction of user. ([0df3851](https://github.com/ChrisOmni/web-To-Do/commit/0df3851ec78e76b9dbebeaa4842070b4a62a7ec5))
+
+
+### Miscellaneous Chores
+
+* update vite base path to repo name ([874d249](https://github.com/ChrisOmni/web-To-Do/commit/874d249dec945bd48a1a476a0cf0dc6f5def9d2a))
+* update vite base path to repo name ([10a2a89](https://github.com/ChrisOmni/web-To-Do/commit/10a2a89fcd6c4d7276040a910b77309eefc31d3d))
+
+
+### Refactors
+
+* changed innerHTML to be more viable in the displayTodo function ([86febdc](https://github.com/ChrisOmni/web-To-Do/commit/86febdc305a6033b8ccafe5c9c2296150f05c541))
+
 ## [1.1.0](https://github.com/jobtrek/web-todo-template/compare/v1.0.0...v1.1.0) (2025-03-07)
 
 

@@ -231,20 +231,16 @@ function changeCheckbox(list: HTMLUListElement, array: boolean[]) {
 function checkForOverdueDate(array: string[]) {
   const today = new Date()
   const todayDate = today.toISOString().split('T')[0]
-  const overdued = []
+  let val = true
   for (let i = 0; i < array.length; i++) {
     if (!overdueMessage) {
       console.error('error in the systeme')
     } else {
-      if (todayDate <= array[i]) {
-        overdued.push(true)
-      }
       if (todayDate > array[i]) {
-        overdued.push(false)
-      }
-      if (overdued[i] === false) {
         overdueMessage.hidden = false
-      } else {
+        val = false
+      }
+      if (todayDate <= array[i] && val) {
         overdueMessage.hidden = true
       }
     }

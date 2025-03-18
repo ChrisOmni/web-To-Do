@@ -24,7 +24,7 @@ h1 {
 
 .todo-input {
   height: 89%;
-  width: 85%;
+  width: 74%;
   border: 2px solid #220235;
   border-radius: 10px;
   font-size: 120%;
@@ -94,7 +94,8 @@ h1 {
 h3 {
   font-size: 1em;
   margin: 0;
-  width: 85%;
+  width: 80%;
+  text-align: center;
   overflow-wrap: break-word;
 }
 
@@ -126,4 +127,21 @@ h3 {
   font-size: 1.8em;
   font-weight: 900;
   color: #ff2626;
+}
+
+.due-date {
+  font-size: 1em;
+  height: 100%;
+  padding: 0 0.3em;
+  color: #fff;
+  background: #220235;
+  border: 0;
+  border-radius: 5px;
+}
+
+.input-date {
+  font-size: 1em;
+  margin: 0;
+  font-weight: 600;
+  color: #220235;
 }

@@ -43,6 +43,11 @@ if (!text || !button || !listTodo) {
       }
       return
     }
+    if (!errorP) {
+      console.error('Someone got the error p out')
+    } else {
+      errorP.hidden = true
+    }
     checkedbox.push(false)
     store.push(text.value)
     displayTodo(text.value, listTodo, store, checkedbox)

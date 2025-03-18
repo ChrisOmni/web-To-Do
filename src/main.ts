@@ -3,6 +3,9 @@ import './style.css'
 const text = document.querySelector<HTMLInputElement>('#todo-input')
 const button = document.querySelector<HTMLButtonElement>('#add-todo-button')
 const listTodo = document.querySelector<HTMLUListElement>('#list-of-todos')
+const errorP = document.querySelector<HTMLParagraphElement>(
+  '#todo-creation-error',
+)
 
 if (!text || !button || !listTodo) {
   console.error('Missing elements')
@@ -11,8 +14,18 @@ if (!text || !button || !listTodo) {
   const checkedbox: boolean[] = []
   text.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
-      if (text.value === '') {
+      if (text.value === '' || text.value.length >= 200) {
+        if (!errorP) {
+          console.error('Someone got the error p out')
+        } else {
+          errorP.hidden = false
+        }
         return
+      }
+      if (!errorP) {
+        console.error('Someone got the error p out')
+      } else {
+        errorP.hidden = true
       }
       checkedbox.push(false)
       store.push(text.value)
@@ -22,8 +35,18 @@ if (!text || !button || !listTodo) {
   })
 
   button.addEventListener('click', () => {
-    if (text.value === '') {
+    if (text.value === '' || text.value.length >= 200) {
+      if (!errorP) {
+        console.error('Someone got the error p out')
+      } else {
+        errorP.hidden = false
+      }
       return
+    }
+    if (!errorP) {
+      console.error('Someone got the error p out')
+    } else {
+      errorP.hidden = true
     }
     checkedbox.push(false)
     store.push(text.value)

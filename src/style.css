@@ -118,3 +118,12 @@ h3 {
   height: 1.5em;
   width: 1.5em;
 }
+
+.todo-creation-error {
+  position: absolute;
+  top: 7em;
+  left: 10em;
+  font-size: 1.8em;
+  font-weight: 900;
+  color: #ff2626;
+}

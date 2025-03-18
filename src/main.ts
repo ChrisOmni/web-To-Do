@@ -8,6 +8,8 @@ const errorP = document.querySelector<HTMLParagraphElement>(
 )
 const dateAdd = document.querySelector<HTMLInputElement>('.due-date')
 const resetButton = document.querySelector<HTMLButtonElement>('.reset-button')
+const overdueMessage =
+  document.querySelector<HTMLParagraphElement>('.overdue-message')
 
 if (!text || !button || !listTodo || !dateAdd) {
   console.error('Missing elements')
@@ -40,6 +42,7 @@ if (!text || !button || !listTodo || !dateAdd) {
       displayTodo(text.value, listTodo, store, checkedbox, dateAdd.value, dates)
       text.value = ''
       dateAdd.value = ''
+      checkForOverdueDate(dates)
     }
   })
 
@@ -63,6 +66,7 @@ if (!text || !button || !listTodo || !dateAdd) {
     displayTodo(text.value, listTodo, store, checkedbox, dateAdd.value, dates)
     text.value = ''
     dateAdd.value = ''
+    checkForOverdueDate(dates)
   })
 
   resetButton?.addEventListener('click', () => {
@@ -75,15 +79,33 @@ if (!text || !button || !listTodo || !dateAdd) {
     if (e.target?.classList.contains('delete-todo')) {
       const deleteButton = e.target as HTMLButtonElement // because we know
       const deleteStore = deleteButton.parentElement
+      const changeDate = e.target as HTMLParagraphElement // we know everything
+      const dateAgain = changeDate.parentElement
       if (!deleteStore?.parentNode?.childNodes) {
         console.error('critical error')
       } else {
-        store.splice(
-          Array.from(deleteStore?.parentNode?.childNodes).indexOf(deleteStore),
-          1,
-        )
+        if (!dateAgain?.parentNode?.childNodes) {
+          console.error('critical error')
+        } else {
+          localStorage.setItem('todo-dates', JSON.stringify(dates))
+          store.splice(
+            Array.from(deleteStore?.parentNode?.childNodes).indexOf(
+              deleteStore,
+            ),
+            1,
+          )
+        }
+        if (!dateAgain?.parentNode?.childNodes) {
+          console.error('critical error')
+        } else {
+          dates.splice(
+            Array.from(dateAgain?.parentNode?.childNodes).indexOf(dateAgain),
+            1,
+          )
+        }
         localStorage.setItem('todo-element', JSON.stringify(store))
         localStorage.setItem('todo-dates', JSON.stringify(dates))
+        checkForOverdueDate(dates)
       }
       const checkBtn = e.target as HTMLInputElement // we just know it
       const deleteCheck = checkBtn.parentElement
@@ -154,6 +176,7 @@ if (!text || !button || !listTodo || !dateAdd) {
       }
       localStorage.setItem('todo-element', JSON.stringify(stored))
       localStorage.setItem('todo-dates', JSON.stringify(dates))
+      checkForOverdueDate(dates)
     }
   }
 }
@@ -200,6 +223,29 @@ function changeCheckbox(list: HTMLUListElement, array: boolean[]) {
         checkboxTodo[i].checked = true
       } else {
         checkboxTodo[i].checked = false
+      }
+    }
+  }
+}
+
+function checkForOverdueDate(array: string[]) {
+  const today = new Date()
+  const todayDate = today.toISOString().split('T')[0]
+  const overdued = []
+  for (let i = 0; i < array.length; i++) {
+    if (!overdueMessage) {
+      console.error('error in the systeme')
+    } else {
+      if (todayDate <= array[i]) {
+        overdued.push(true)
+      }
+      if (todayDate > array[i]) {
+        overdued.push(false)
+      }
+      if (overdued[i] === false) {
+        overdueMessage.hidden = false
+      } else {
+        overdueMessage.hidden = true
       }
     }
   }

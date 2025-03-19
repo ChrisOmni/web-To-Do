@@ -144,7 +144,9 @@ h3 {
   font-size: 1em;
   margin: 0;
   font-weight: 600;
-  color: #220235;
+  background: rgb(232, 216, 240);
+  border-radius: 7px;
+  padding: 0 0.1em;
 }
 
 .reset-button {

@@ -17,6 +17,7 @@ if (!text || !button || !listTodo || !dateAdd) {
   const store: string[] = []
   const checkedbox: boolean[] = []
   const dates: string[] = []
+  const datesColor: string[] = []
   text.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
       if (
@@ -37,9 +38,19 @@ if (!text || !button || !listTodo || !dateAdd) {
         errorP.hidden = true
       }
       dates.push(dateAdd.value)
+      datesColor.push(changeDateDueColor(dateAdd.value))
       checkedbox.push(false)
       store.push(text.value)
-      displayTodo(text.value, listTodo, store, checkedbox, dateAdd.value, dates)
+      displayTodo(
+        text.value,
+        listTodo,
+        store,
+        checkedbox,
+        dateAdd.value,
+        dates,
+        changeDateDueColor(dateAdd.value),
+        datesColor,
+      )
       text.value = ''
       dateAdd.value = ''
       checkForOverdueDate(dates)
@@ -63,7 +74,17 @@ if (!text || !button || !listTodo || !dateAdd) {
     dates.push(dateAdd.value)
     checkedbox.push(false)
     store.push(text.value)
-    displayTodo(text.value, listTodo, store, checkedbox, dateAdd.value, dates)
+    datesColor.push(changeDateDueColor(dateAdd.value))
+    displayTodo(
+      text.value,
+      listTodo,
+      store,
+      checkedbox,
+      dateAdd.value,
+      dates,
+      changeDateDueColor(dateAdd.value),
+      datesColor,
+    )
     text.value = ''
     dateAdd.value = ''
     checkForOverdueDate(dates)
@@ -81,30 +102,36 @@ if (!text || !button || !listTodo || !dateAdd) {
       const deleteStore = deleteButton.parentElement
       const changeDate = e.target as HTMLParagraphElement // we know everything
       const dateAgain = changeDate.parentElement
+      const changeColor = e.target as HTMLParagraphElement // and all at once
+      const colorAgain = changeColor.parentElement
       if (!deleteStore?.parentNode?.childNodes) {
         console.error('critical error')
       } else {
-        if (!dateAgain?.parentNode?.childNodes) {
+        if (
+          !dateAgain?.parentNode?.childNodes ||
+          !colorAgain?.parentNode?.childNodes
+        ) {
           console.error('critical error')
         } else {
-          localStorage.setItem('todo-dates', JSON.stringify(dates))
           store.splice(
             Array.from(deleteStore?.parentNode?.childNodes).indexOf(
               deleteStore,
             ),
             1,
           )
-        }
-        if (!dateAgain?.parentNode?.childNodes) {
-          console.error('critical error')
-        } else {
           dates.splice(
             Array.from(dateAgain?.parentNode?.childNodes).indexOf(dateAgain),
             1,
           )
+          datesColor.splice(
+            Array.from(colorAgain?.parentNode?.childNodes).indexOf(colorAgain),
+            1,
+          )
         }
+
         localStorage.setItem('todo-element', JSON.stringify(store))
         localStorage.setItem('todo-dates', JSON.stringify(dates))
+        localStorage.setItem('todo-dates-color', JSON.stringify(datesColor))
         checkForOverdueDate(dates)
       }
       const checkBtn = e.target as HTMLInputElement // we just know it
@@ -153,29 +180,46 @@ if (!text || !button || !listTodo || !dateAdd) {
     const titleFromStorage = localStorage.getItem('todo-element')
     const checkedFromStorage = localStorage.getItem('todo-checkbox')
     const datesFromStorage = localStorage.getItem('todo-dates')
+    const datesColorFromStorage = localStorage.getItem('todo-dates-color')
     if (
       titleFromStorage === null ||
       checkedFromStorage === null ||
-      datesFromStorage === null
+      datesFromStorage === null ||
+      datesColorFromStorage === null
     ) {
       console.error('no local storage')
     } else {
       const stored: string[] = store.concat(JSON.parse(titleFromStorage))
       const date: string[] = dates.concat(JSON.parse(datesFromStorage))
       const check: boolean[] = checkedbox.concat(JSON.parse(checkedFromStorage))
+      const color: string[] = datesColor.concat(
+        JSON.parse(datesColorFromStorage),
+      )
       if (!listTodo) {
         console.error('Missing elements')
       } else {
         for (let i = 0; i < stored.length; i++) {
           store.push(stored[i])
           dates.push(date[i])
+          datesColor.push(color[i])
           checkedbox.push(check[i])
-          displayTodo(stored[i], listTodo, store, checkedbox, date[i], dates)
+          displayTodo(
+            stored[i],
+            listTodo,
+            store,
+            checkedbox,
+            date[i],
+            dates,
+            changeDateDueColor(dateAdd.value),
+            datesColor,
+          )
         }
         changeCheckbox(listTodo, checkedbox)
       }
       localStorage.setItem('todo-element', JSON.stringify(stored))
       localStorage.setItem('todo-dates', JSON.stringify(dates))
+      localStorage.setItem('todo-dates-color', JSON.stringify(datesColor))
+      reaplyColorOnDueDate(datesColor)
       checkForOverdueDate(dates)
     }
   }
@@ -188,6 +232,8 @@ function displayTodo(
   array2: boolean[],
   date: string,
   array3: string[],
+  colors: string,
+  array4: string[],
 ) {
   const listElement = document.createElement('li')
   listElement.classList.add('todo-element')
@@ -199,6 +245,7 @@ function displayTodo(
   const dateInput = document.createElement('p')
   dateInput.classList.add('input-date')
   dateInput.textContent = date
+  dateInput.style.color = colors
   listElement.appendChild(dateInput)
   const titleText = document.createElement('h3')
   const deleteButton = document.createElement('button')
@@ -211,6 +258,7 @@ function displayTodo(
   localStorage.setItem('todo-element', JSON.stringify(array))
   localStorage.setItem('todo-checkbox', JSON.stringify(array2))
   localStorage.setItem('todo-dates', JSON.stringify(array3))
+  localStorage.setItem('todo-dates-color', JSON.stringify(array4))
 }
 
 function changeCheckbox(list: HTMLUListElement, array: boolean[]) {
@@ -244,5 +292,36 @@ function checkForOverdueDate(array: string[]) {
         overdueMessage.hidden = true
       }
     }
+  }
+}
+
+function changeDateDueColor(par: string) {
+  const today = new Date()
+  const afterFourDays2 = new Date()
+  afterFourDays2.setDate(today.getDate() + 4)
+  const afterFourDaysString = afterFourDays2.toISOString()
+  const afterFourDays = Date.parse(afterFourDaysString)
+  const todayString = today.toISOString().split('T')[0]
+  const todayDate = Date.parse(todayString)
+  const due = Date.parse(par)
+  console.log(todayString)
+  console.log(par)
+  let color = ''
+  if (due === todayDate) {
+    color = 'orange'
+  } else if (due < todayDate) {
+    color = 'red'
+  } else if (due > todayDate && due < afterFourDays) {
+    color = 'yellow'
+  } else {
+    color = 'green'
+  }
+  return color
+}
+
+function reaplyColorOnDueDate(array: string[]) {
+  const dates = document.querySelectorAll<HTMLParagraphElement>('.input-date')
+  for (let i = 0; i < array.length; i++) {
+    dates[i].style.color = array[i]
   }
 }

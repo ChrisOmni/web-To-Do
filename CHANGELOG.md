@@ -1,5 +1,29 @@
 # Changelog
 
+## [1.3.0](https://github.com/ChrisOmni/web-To-Do/compare/v1.2.0...v1.3.0) (2025-03-21)
+
+
+### Features
+
+* added a date input to make the todo app more useful. ([7538383](https://github.com/ChrisOmni/web-To-Do/commit/7538383c8ac813af73453a741469e6ffbd5d9829))
+* added a message when you have overdue todos. ([eefb53c](https://github.com/ChrisOmni/web-To-Do/commit/eefb53cf6b31059a82554185e865da95b272c969))
+* added a new "Delete Every Todo" button. ([2ea8054](https://github.com/ChrisOmni/web-To-Do/commit/2ea8054b224340a3f83531b5266adace59f46897))
+* now changes color of the date when a todo is close to overdue and overdued ([bb9dc77](https://github.com/ChrisOmni/web-To-Do/commit/bb9dc77cd422b9f7e86dcf33a852aa04326e58e4))
+
+
+### Bug Fixes
+
+* fixed a problem concerning the local storage of the dates. ([eefb53c](https://github.com/ChrisOmni/web-To-Do/commit/eefb53cf6b31059a82554185e865da95b272c969))
+* fixed the overdue message apparition ([7abd74a](https://github.com/ChrisOmni/web-To-Do/commit/7abd74a4ec533b8ce404666ac17fb772718f2bd7))
+* made it so you need to select a date before making a todo ([c9f8c01](https://github.com/ChrisOmni/web-To-Do/commit/c9f8c0105ea2c079609eda0509220192f7739710))
+* suppressed the array that stocked the checkboxes ([3212f05](https://github.com/ChrisOmni/web-To-Do/commit/3212f05e79d25cfe84b3509416852a88136662bb))
+
+
+### Miscellaneous Chores
+
+* **deps-dev:** bump vite from 6.2.1 to 6.2.2 ([e0d3146](https://github.com/ChrisOmni/web-To-Do/commit/e0d31468599c7a0a5c475989d7e7c796b4ca3418))
+* **deps-dev:** bump vite from 6.2.1 to 6.2.2 ([083ce24](https://github.com/ChrisOmni/web-To-Do/commit/083ce247c799ea9c93c7695de847792d40c60e28))
+
 ## [1.2.0](https://github.com/ChrisOmni/web-To-Do/compare/v1.1.0...v1.2.0) (2025-03-18)
 
 

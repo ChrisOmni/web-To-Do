@@ -169,7 +169,7 @@ if (!text || !button || !listTodo || !dateAdd) {
         for (let z = 0; z < todoStored.length; z++) {
           checkboxArr.push(todoStored[z].checkbox)
         }
-        changeCheckbox(listTodo, checkboxArr) // problème à régler aussi
+        changeCheckbox(listTodo, checkboxArr)
       }
       localStorage.setItem('todos', JSON.stringify(todoStored))
       reaplyColorOnDueDate(todoStored)

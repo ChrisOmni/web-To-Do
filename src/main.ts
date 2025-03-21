@@ -124,25 +124,19 @@ if (!text || !button || !listTodo || !dateAdd) {
         console.error('critical error')
       } else {
         if (
-          checkboxArr[
-            Array.from(change?.parentNode?.childNodes).indexOf(change)
-          ] === false
+          todoStored[Array.from(change?.parentNode?.childNodes).indexOf(change)]
+            .checkbox === false
         ) {
-          checkboxArr.splice(
-            Array.from(change?.parentNode?.childNodes).indexOf(change),
-            1,
-            true,
-          )
+          todoStored[
+            Array.from(change?.parentNode?.childNodes).indexOf(change)
+          ].checkbox = true
         } else {
-          checkboxArr.splice(
-            Array.from(change?.parentNode?.childNodes).indexOf(change),
-            1,
-            false,
-          )
+          todoStored[
+            Array.from(change?.parentNode?.childNodes).indexOf(change)
+          ].checkbox = false
         }
       }
-      console.log(checkboxArr)
-      addCheckboxToObject(todoStored, checkboxArr)
+      localStorage.setItem('todos', JSON.stringify(todoStored))
     }
   })
 
@@ -281,11 +275,4 @@ function reaplyColorOnDueDate(array: Todo[]) {
   for (let i = 0; i < array.length; i++) {
     dates[i].style.color = newColor[i]
   }
-}
-
-function addCheckboxToObject(array: Todo[], array2: boolean[]) {
-  for (let i = 0; i < array.length; i++) {
-    array[i].checkbox = array2[i]
-  }
-  localStorage.setItem('todos', JSON.stringify(array))
 }

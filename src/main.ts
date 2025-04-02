@@ -37,9 +37,10 @@ if (!text || !button || !listTodo || !dateAdd || !errorP) {
     AddingATodo(text, listTodo, dateAdd, todoStored, errorP)
   })
   resetButton?.addEventListener('click', () => {
-    localStorage.clear()
     todoStored.splice(0, todoStored.length)
+    localStorage.setItem('todos', JSON.stringify(todoStored))
     listTodo.innerHTML = ''
+    checkForOverdueDate(todoStored)
   })
   listTodo.addEventListener('click', (e) => {
     // @ts-ignore

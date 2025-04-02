@@ -172,3 +172,7 @@ h3 {
   padding: 0 0.3em;
   border-radius: 5px;
 }
+
+.reset-button:hover {
+  background: #4c0772;
+}

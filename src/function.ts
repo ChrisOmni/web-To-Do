@@ -50,23 +50,27 @@ export function changeCheckbox(list: HTMLUListElement, array: Todo[]) {
 }
 
 export function checkForOverdueDate(array: Todo[]) {
-  const dateArr: string[] = []
-  const today = new Date()
-  const todayDate = today.toISOString().split('T')[0]
-  let val = true
-  for (let i = 0; i < array.length; i++) {
-    dateArr.push(array[i].date)
-  }
-  for (let i = 0; i < array.length; i++) {
-    if (!overdueMessage) {
-      console.error('error systeme')
+  if (!overdueMessage) {
+    console.error('error systeme')
+  } else {
+    const dateArr: string[] = []
+    const today = new Date()
+    const todayDate = today.toISOString().split('T')[0]
+    let val = true
+    if (array.length === 0) {
+      overdueMessage.hidden = true
     } else {
-      if (todayDate > dateArr[i]) {
-        overdueMessage.hidden = false
-        val = false
+      for (let i = 0; i < array.length; i++) {
+        dateArr.push(array[i].date)
       }
-      if (todayDate <= dateArr[i] && val) {
-        overdueMessage.hidden = true
+      for (let i = 0; i < array.length; i++) {
+        if (todayDate > dateArr[i]) {
+          overdueMessage.hidden = false
+          val = false
+        }
+        if (todayDate <= dateArr[i] && val) {
+          overdueMessage.hidden = true
+        }
       }
     }
   }

@@ -1,5 +1,39 @@
 # Changelog
 
+## [1.3.0](https://github.com/ChrisOmni/web-To-Do/compare/v1.2.0...v1.3.0) (2025-04-14)
+
+
+### Features
+
+* added a date input to make the todo app more useful. ([7538383](https://github.com/ChrisOmni/web-To-Do/commit/7538383c8ac813af73453a741469e6ffbd5d9829))
+* added a message when you have overdue todos. ([eefb53c](https://github.com/ChrisOmni/web-To-Do/commit/eefb53cf6b31059a82554185e865da95b272c969))
+* added a new "Delete Every Todo" button. ([2ea8054](https://github.com/ChrisOmni/web-To-Do/commit/2ea8054b224340a3f83531b5266adace59f46897))
+* now changes color of the date when a todo is close to overdue and overdued ([bb9dc77](https://github.com/ChrisOmni/web-To-Do/commit/bb9dc77cd422b9f7e86dcf33a852aa04326e58e4))
+
+
+### Bug Fixes
+
+* fixed a problem concerning the local storage of the dates. ([eefb53c](https://github.com/ChrisOmni/web-To-Do/commit/eefb53cf6b31059a82554185e865da95b272c969))
+* fixed the overdue message apparition ([7abd74a](https://github.com/ChrisOmni/web-To-Do/commit/7abd74a4ec533b8ce404666ac17fb772718f2bd7))
+* made it so you need to select a date before making a todo ([c9f8c01](https://github.com/ChrisOmni/web-To-Do/commit/c9f8c0105ea2c079609eda0509220192f7739710))
+* suppressed the array that stocked the checkboxes ([3212f05](https://github.com/ChrisOmni/web-To-Do/commit/3212f05e79d25cfe84b3509416852a88136662bb))
+
+
+### Miscellaneous Chores
+
+* **deps-dev:** bump vite from 6.2.1 to 6.2.2 ([e0d3146](https://github.com/ChrisOmni/web-To-Do/commit/e0d31468599c7a0a5c475989d7e7c796b4ca3418))
+* **deps-dev:** bump vite from 6.2.1 to 6.2.2 ([083ce24](https://github.com/ChrisOmni/web-To-Do/commit/083ce247c799ea9c93c7695de847792d40c60e28))
+* **deps-dev:** bump vite from 6.2.2 to 6.2.4 ([6c8ad28](https://github.com/ChrisOmni/web-To-Do/commit/6c8ad28c8fa1896cf9a87d978b7fb4e13e675009))
+* **deps-dev:** bump vite from 6.2.2 to 6.2.4 ([e9bccce](https://github.com/ChrisOmni/web-To-Do/commit/e9bccce396b135463998d9a18c5fb5f67adc6990))
+
+
+### Refactors
+
+* put all the functions in another file and optimizedthe code. ([42bef27](https://github.com/ChrisOmni/web-To-Do/commit/42bef27e7702e9aba2692493f593c34c3f8e2d6f))
+* reformated the Imports of every file ([522d00d](https://github.com/ChrisOmni/web-To-Do/commit/522d00df110a32fa5e53a5f8cc2c9b7328f6f034))
+* separated the functions in sub-categories for readability ([32a6e47](https://github.com/ChrisOmni/web-To-Do/commit/32a6e47c43299322baf291a5f863ef33aa27dce6))
+* separated the functions in sub-categories for readability ([922f02c](https://github.com/ChrisOmni/web-To-Do/commit/922f02ccf9a57fb66b46cf095da365d12e87ea8c))
+
 ## [1.2.0](https://github.com/ChrisOmni/web-To-Do/compare/v1.1.0...v1.2.0) (2025-03-18)
 
 

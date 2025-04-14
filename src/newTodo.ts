@@ -1,7 +1,7 @@
 import './main.ts'
-import type { Todo } from './types.ts'
 import { changeDateDueColor } from './dates.ts'
 import { checkForOverdueDate } from './dates.ts'
+import type { Todo } from './types.ts'
 
 export function AddingATodo(
   title: HTMLInputElement,

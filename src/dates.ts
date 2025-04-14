@@ -1,5 +1,5 @@
-import type { Todo } from './types.ts'
 import { overdueMessage } from './main.ts'
+import type { Todo } from './types.ts'
 
 export function checkForOverdueDate(array: Todo[]) {
   if (!overdueMessage) {

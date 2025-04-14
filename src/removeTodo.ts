@@ -1,5 +1,5 @@
-import type { Todo } from './types.ts'
 import { spliceBooleanArrays } from './checkbox.ts'
+import type { Todo } from './types.ts'
 
 export function removeTodosOrCheckbox(
   e: MouseEvent,

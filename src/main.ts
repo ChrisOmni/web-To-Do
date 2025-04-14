@@ -1,12 +1,12 @@
 import './style.css'
-import { displayTodo } from './newTodo.ts'
 import { changeCheckbox } from './checkbox.ts'
 import { checkForOverdueDate } from './dates.ts'
 import { changeDateDueColor } from './dates.ts'
 import { reaplyColorOnDueDate } from './dates.ts'
+import { displayTodo } from './newTodo.ts'
 import { AddingATodo } from './newTodo.ts'
-import type { Todo } from './types.ts'
 import { removeTodosOrCheckbox } from './removeTodo.ts'
+import type { Todo } from './types.ts'
 
 export const errorP = document.querySelector<HTMLParagraphElement>(
   '#todo-creation-error',
